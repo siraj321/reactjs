@@ -1,0 +1,49 @@
+- download node js
+- npm install create-react-app -g
+  C:\Users\admin\AppData\Roaming\npm\create-react-app -> C:\Users\admin\AppData\Roaming\npm\node_modules\create-react-app\index.js
+	+ create-react-app@3.4.1
+	added 99 packages from 47 contributors in 37.895s
+	
+- C:\Users\admin\PythonProjects\UI ReactJS>create-react-app react-complete-guide --scripts-version 1.1.5
+  npm start
+  npm run 
+  npm build
+  npm eject
+   npm start
+    Starts the development server.
+
+  npm run build
+    Bundles the app into static files for production.
+
+  npm test
+    Starts the test runner.
+
+  npm run eject
+    Removes this tool and copies build dependencies, configuration files
+    and scripts into the app directory. If you do this, you can’t go back!
+
+	We suggest that you begin by typing:
+
+	cd react-complete-guide
+	npm start
+
+	Happy hacking!
+	
+-
+
+
+- Use index.js for randering 'App' Elements
+- Create js class with object and ccs for the same.
+- Import those object in one App.js for application
+- Use Radium for the hover
+- Creating react componets usign props =>
+- We can check version of react from package.json
+- StyleComponent with `` symbole
+- Definging Handler like name and switch event
+- Definging State on objects
+
+
+
+
+
+
