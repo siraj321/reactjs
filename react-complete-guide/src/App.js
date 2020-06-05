@@ -80,18 +80,20 @@ class App extends Component {
 
   }
   render() {
-    const style = {
-      backgroundColor: 'green',
-      font: 'white',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
+    // const style = {
+    //   backgroundColor: 'green',
+    //   font: 'white',
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer',
+    //   ':hover': {
+    //     backgroundColor: 'lightgreen',
+    //     color: 'black'
+    //   }
 
-    } 
+    // };
+    //let btnClass = [comclass.Button];
+    let btnClass = '';
 
     let persons = this.state.persons;
 
@@ -114,6 +116,8 @@ class App extends Component {
       //   backgroundColor: 'salmon',
       //   color: 'black'
       // }
+      //btnClass.push(comclass.Red);
+      btnClass = comclass.Red;
     }
     //let classes = ['red','bold'].join(' ')
 
@@ -141,8 +145,10 @@ class App extends Component {
       {/* <StyledButton
       alt={this.state.showPersons}
       onClick={this.togglePersonHandler}>Toggle Person</StyledButton> */}
+      {/* <button
+        className={btnClass.join(' ')} onClick={this.togglePersonHandler}> */}
       <button
-        className={comclass.Button} onClick={this.togglePersonHandler}>
+        className={btnClass} onClick={this.togglePersonHandler}>
           Toggle Persons
       </button>
       {persons}
