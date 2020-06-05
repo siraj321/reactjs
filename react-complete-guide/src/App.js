@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 //import React, { useState } from 'react';
-import './App.css';
+import comclass from './App.css';
 import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
-import person from './Person/Person';
+//import person from './Person/Person';
 //import styled from 'styled-components';
-import ErrorBoundary from './ErrorBoundary/ErroBoundary'
+//import ErrorBoundary from './ErrorBoundary/ErroBoundary'
 
 // const StyledButton = styled.button`
 // background-color: ${props => props.alt ? 'red' : 'green'};
@@ -119,11 +119,11 @@ class App extends Component {
 
     const classes = [];
     if(this.state.person.length <= 2){
-      classes.push('red');
+      classes.push(comclass.red);
     }
 
     if(this.state.person.length <= 1){
-      classes.push('bold');
+      classes.push(comclass.bold);
     }
 
     return (
@@ -142,7 +142,7 @@ class App extends Component {
       alt={this.state.showPersons}
       onClick={this.togglePersonHandler}>Toggle Person</StyledButton> */}
       <button
-        className="button" onClick={this.togglePersonHandler}>
+        className={comclass.Button} onClick={this.togglePersonHandler}>
           Toggle Persons
       </button>
       {persons}
