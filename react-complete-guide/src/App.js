@@ -5,7 +5,7 @@ import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 //import person from './Person/Person';
 //import styled from 'styled-components';
-//import ErrorBoundary from './ErrorBoundary/ErroBoundary'
+import ErrorBoundary from './ErrorBoundary/ErroBoundary';
 
 // const StyledButton = styled.button`
 // background-color: ${props => props.alt ? 'red' : 'green'};
@@ -15,7 +15,7 @@ import Person from './Person/Person';
 // cursor: pointer;
 
 // &:hover: {
-//   background-color: lightgreen;
+//   background-color: lightgreen;``
 //   color: black;
 // }
 // `;
@@ -108,6 +108,12 @@ class App extends Component {
                       age={per.age}
                       key={per.id}
                       changed={(event) => this.nameChangeHandler(event,per.id)}/>
+                      // return <ErrorBoundary key={per.id}><Person 
+                      // click={() => this.deletePersonHandler(index)}
+                      // name={per.name}
+                      // age={per.age}
+                      // key={per.id}
+                      // changed={(event) => this.nameChangeHandler(event,per.id)}/></ErrorBoundary>
           })} 
         </div>
       );
