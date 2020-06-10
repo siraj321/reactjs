@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 //import React, { useState } from 'react';
 import comclass from './App.css';
 import Radium, { StyleRoot } from 'radium';
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons';
 //import person from './Person/Person';
 //import styled from 'styled-components';
-import ErrorBoundary from './ErrorBoundary/ErroBoundary';
+import ErrorBoundary from '../ErrorBoundary/ErroBoundary';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 // const StyledButton = styled.button`
 // background-color: ${props => props.alt ? 'red' : 'green'};
@@ -22,7 +23,7 @@ import ErrorBoundary from './ErrorBoundary/ErroBoundary';
 
 class App extends Component {
   state = {
-    person: [
+    persons: [
       { id: 'id1', name: 'Max', age: 28 },
       { id: 'id2', name: 'Max2', age: 24 },
       { id: 'id3', name: 'Max3', age: 25 }
@@ -34,7 +35,7 @@ class App extends Component {
   switchNameHandler = (newName) => {
     //console.log('Was Clicked!');
     this.setState({
-      person: [
+      persons: [
         { name: newName, age: 28 },
         { name: 'Max2', age: 24 },
         { name: 'Max3', age: 26 }
@@ -43,24 +44,24 @@ class App extends Component {
   }
 
   nameChangeHandler = (event, id) => {
-    const personIndex = this.state.person.findIndex(p => {
+    const personIndex = this.state.persons.findIndex(p => {
       return p.id ===id;
     });
 
     const person = {
-      ...this.state.person[personIndex]
+      ...this.state.persons[personIndex]
     };
 
     person.name = event.target.value;
 
-    const persons =[...this.state.person];
+    const persons =[...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({person:persons});
+    this.setState({persons:persons});
 
 
     this.setState({
-      person: [
+      persons: [
         { name: 'name one', age: 28 },
         { name: event.target.value, age: 24 },
         { name: 'Max3', age: 27 }
@@ -69,9 +70,9 @@ class App extends Component {
   }
 
   deletePersonHandler = (personIndex) => {
-    const persons = [...this.state.person];
+    const persons = [...this.state.persons];
     persons.splice(personIndex,1);
-    this.setState({person:persons})
+    this.setState({persons:persons})
   }
 
   togglePersonHandler = () => {
@@ -93,55 +94,71 @@ class App extends Component {
 
     // };
     //let btnClass = [comclass.Button];
-    let btnClass = '';
+    
+    // cockpit move
+    //let btnClass = '';
 
-    let persons = this.state.persons;
+    //let persons = this.state.persons;
+    let persons = null;
 
     
     if (this.state.showPersons) {
-      persons =(
-        <div>
-          {this.state.person.map((per, index) =>{
+      persons = 
+           //( for cockpit
+        //<div> for cockpit not require
+          <Persons 
+            persons = {this.state.persons}
+            clicked = {this.deletePersonHandler}
+            changed = {this.nameChangeHandler} />;
+          {/* {this.state.persons.map((per, index) =>{
             return <Person 
                       click={() => this.deletePersonHandler(index)}
                       name={per.name}
                       age={per.age}
                       key={per.id}
                       changed={(event) => this.nameChangeHandler(event,per.id)}/>
-                      // return <ErrorBoundary key={per.id}><Person 
-                      // click={() => this.deletePersonHandler(index)}
-                      // name={per.name}
-                      // age={per.age}
-                      // key={per.id}
-                      // changed={(event) => this.nameChangeHandler(event,per.id)}/></ErrorBoundary>
-          })} 
-        </div>
-      );
+                        // return <ErrorBoundary key={per.id}><Person 
+                        // click={() => this.deletePersonHandler(index)}
+                        // name={per.name}
+                        // age={per.age}
+                        // key={per.id}
+                        // changed={(event) => this.nameChangeHandler(event,per.id)}/></ErrorBoundary>
+          })}  */}
+        //</div>
+      //); for cockpit
+
       // style.backgroundColor = 'red'
       // style[':hover'] = {
       //   backgroundColor: 'salmon',
       //   color: 'black'
       // }
       //btnClass.push(comclass.Red);
-      btnClass = comclass.Red;
+      
+      // move to cockpit
+      //btnClass = comclass.Red;
     }
     //let classes = ['red','bold'].join(' ')
 
+    /* move to cockpit
     const classes = [];
-    if(this.state.person.length <= 2){
+    if(this.state.persons.length <= 2){
       classes.push(comclass.red);
     }
 
-    if(this.state.person.length <= 1){
+    if(this.state.persons.length <= 1){
       classes.push(comclass.bold);
-    }
+    } */
 
     return (
 
       <StyleRoot>
       <div className={comclass.App}> 
-      <h1> Hi, I'am a React App   </h1>
-      <p className={classes.join(' ')}>This is really working.</p>
+      <Cockpit showPersons={this.state.showPersons}
+                persons={this.state.persons} 
+                clicked={this.togglePersonHandler}/>
+      {/* move to cockpit
+          <h1> Hi, I'am a React App   </h1>
+      <p className={classes.join(' ')}>This is really working.</p> */}
       
       {/* <button 
       style={style}
@@ -153,11 +170,16 @@ class App extends Component {
       onClick={this.togglePersonHandler}>Toggle Person</StyledButton> */}
       {/* <button
         className={btnClass.join(' ')} onClick={this.togglePersonHandler}> */}
-      <button
+      
+      {/* move to cockpit 
+       <button
         className={btnClass} onClick={this.togglePersonHandler}>
           Toggle Persons
       </button>
-      {persons}
+       */} 
+       {persons}
+
+
       {/* {<button onClick={() => this.switchNameHandler('new one' )}>Switch Name</button>  alter way: not prefered*/} 
       {/* {this.state.showPersons === true ? 
         <div>

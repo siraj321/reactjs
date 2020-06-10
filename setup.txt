@@ -41,6 +41,7 @@
 - StyleComponent with `` symbole
 - Definging Handler like name and switch event
 - Definging State on objects
+- React project structure - Components(React Component), Container(App.js,App.css,App.test.js), assets(css, images)
 
 
 
