@@ -43,6 +43,11 @@
 - Definging State on objects
 - React project structure - Components(React Component), Container(App.js,App.css,App.test.js), assets(css, images)
 
+- Stateless componanet and statefull component or presentation and coantainger component
+  Presentaion component does not manage state - that is majority of comonent in our app that is not managing state
+  Container component that manage state - statefull componnet
+  Class based component manage state - Fuction component could't - after react 16
+
 
 
 

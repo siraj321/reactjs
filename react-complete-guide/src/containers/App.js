@@ -7,6 +7,7 @@ import Persons from '../components/Persons/Persons';
 //import styled from 'styled-components';
 import ErrorBoundary from '../ErrorBoundary/ErroBoundary';
 import Cockpit from '../components/Cockpit/Cockpit';
+import { ThemeConsumer } from 'styled-components';
 
 // const StyledButton = styled.button`
 // background-color: ${props => props.alt ? 'red' : 'green'};
@@ -22,6 +23,11 @@ import Cockpit from '../components/Cockpit/Cockpit';
 // `;
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    console.log('[App.js] construactor');
+    // this.state =  we can define state here as well
+  }
   state = {
     persons: [
       { id: 'id1', name: 'Max', age: 28 },
@@ -30,6 +36,12 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showPersons: false
+  };
+
+  // life cycle method
+  static getDerivedStateFromProps(props, state){
+    console.log('[App.js] getDerivedStateFromProps',props)
+    return state;
   }
 
   switchNameHandler = (newName) => {
@@ -42,6 +54,22 @@ class App extends Component {
       ] 
     })
   }
+
+  //lifecycle method
+  componentDidMount(){
+    console.log('[App.js] componentDidMount');
+  }
+  // componentWillMount(){
+  //   console.log('[App.js] componentWillMout');
+  // }
+
+  componentDidUpdate(){
+       console.log('[App.js] componentDidUpdate');
+   }
+   shouldComponentUpdate(nextProps,nextState){
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+}
 
   nameChangeHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
@@ -81,6 +109,7 @@ class App extends Component {
 
   }
   render() {
+    console.log('[App.js] rander')
     // const style = {
     //   backgroundColor: 'green',
     //   font: 'white',
@@ -153,7 +182,8 @@ class App extends Component {
 
       <StyleRoot>
       <div className={comclass.App}> 
-      <Cockpit showPersons={this.state.showPersons}
+      <Cockpit  title={this.props.appTitle }
+                showPersons={this.state.showPersons}
                 persons={this.state.persons} 
                 clicked={this.togglePersonHandler}/>
       {/* move to cockpit
