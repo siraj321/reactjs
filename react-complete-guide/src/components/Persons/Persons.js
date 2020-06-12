@@ -34,6 +34,10 @@ componentDidUpdate(prevProps, prevState, Snapshot){
     console.log(Snapshot);
 }
 
+componentWillUnmount(){
+    console.log('[Person.js] componentWillUnmount');
+}
+
     render(){
         console.log('[Persons.js] rendering...');
 

@@ -35,7 +35,8 @@ class App extends Component {
       { id: 'id3', name: 'Max3', age: 25 }
     ],
     otherState: 'some other value',
-    showPersons: false
+    showPersons: false,
+    showCockpit: true
   };
 
   // life cycle method
@@ -88,13 +89,13 @@ class App extends Component {
     this.setState({persons:persons});
 
 
-    this.setState({
+    /*this.setState({
       persons: [
         { name: 'name one', age: 28 },
         { name: event.target.value, age: 24 },
         { name: 'Max3', age: 27 }
       ] 
-    })
+    })*/
   }
 
   deletePersonHandler = (personIndex) => {
@@ -182,10 +183,18 @@ class App extends Component {
 
       <StyleRoot>
       <div className={comclass.App}> 
+      <button
+         onClick={() => {
+           this.setState({showCockpit:false});
+         }}
+       >Remove Cockpit
+       </button>
+       {this.state.showCockpit ? (
       <Cockpit  title={this.props.appTitle }
                 showPersons={this.state.showPersons}
                 persons={this.state.persons} 
                 clicked={this.togglePersonHandler}/>
+        ): null }
       {/* move to cockpit
           <h1> Hi, I'am a React App   </h1>
       <p className={classes.join(' ')}>This is really working.</p> */}

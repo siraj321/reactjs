@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import comclass from './Cockpit.css';
+//import { useEffect } from 'react';
 
-const cockpit = (props) =>  {
+const Cockpit = (props) =>  {
+// change Cockpit to cockpit for react hook - useEffect
+useEffect(() => {
+  console.log('[Cockpit.js] useEffect');
+  // Http request...
+  setTimeout(() => {
+    alert('Saved data to cloud!');
+  }, 1000);
+  return () => {
+    console.log('[Cockpit.js] cleanup work in useEffect');
+  };
+}, []);
+
+useEffect(() => {
+  console.log('[Cockpit.js] 2nd useEffect');
+  return () => {
+    console.log('[Cockpit.js] cleanup work in 2nd useEffect');
+  };
+});
+
+
 
     let btnClass = '';
     const classes = [];
@@ -31,4 +52,4 @@ const cockpit = (props) =>  {
  );   
 };
 
-export default cockpit;
+export default Cockpit;
