@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import React, { useState } from 'react';
-import comclass from './App.css';
+import comclasses from './App.css';
 import Radium, { StyleRoot } from 'radium';
 import Persons from '../components/Persons/Persons';
 //import person from './Person/Person';
@@ -8,6 +8,9 @@ import Persons from '../components/Persons/Persons';
 import ErrorBoundary from '../ErrorBoundary/ErroBoundary';
 import Cockpit from '../components/Cockpit/Cockpit';
 import { ThemeConsumer } from 'styled-components';
+//import WithClass from '../hoc/WithClass'; // As component
+import withClass from '../hoc/withClass'; //as function
+import Aux from '../hoc/Auxilary';
 
 // const StyledButton = styled.button`
 // background-color: ${props => props.alt ? 'red' : 'green'};
@@ -36,7 +39,8 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showPersons: false,
-    showCockpit: true
+    showCockpit: true,
+    changeCounter: 0
   };
 
   // life cycle method
@@ -86,7 +90,12 @@ class App extends Component {
     const persons =[...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({persons:persons});
+    this.setState((prevState,props) =>{
+      return {
+        persons:persons, 
+        changeCounter: prevState.changeCounter + 1
+      };
+    });
 
 
     /*this.setState({
@@ -96,7 +105,7 @@ class App extends Component {
         { name: 'Max3', age: 27 }
       ] 
     })*/
-  }
+  };
 
   deletePersonHandler = (personIndex) => {
     const persons = [...this.state.persons];
@@ -182,7 +191,12 @@ class App extends Component {
     return (
 
       <StyleRoot>
-      <div className={comclass.App}> 
+      
+      <Aux> 
+      {/* <WithClass classes={comclass.App}>  */}
+      
+      {/* <div className={comclass.App}>  */}
+      
       <button
          onClick={() => {
            this.setState({showCockpit:false});
@@ -192,7 +206,7 @@ class App extends Component {
        {this.state.showCockpit ? (
       <Cockpit  title={this.props.appTitle }
                 showPersons={this.state.showPersons}
-                persons={this.state.persons} 
+                personsLength={this.state.persons.length} 
                 clicked={this.togglePersonHandler}/>
         ): null }
       {/* move to cockpit
@@ -235,14 +249,17 @@ class App extends Component {
             age={this.state.person[2].age}/>
         </div>: null
       } */}
-      </div>
-      </StyleRoot>
+      {/* </div> */}
+      {/* </WithClass> */}
+      </Aux>
+      </StyleRoot> 
     );
     //return React.createElement('div',{className: 'App'},React.createElement('h1',null,'Dose this works now?'));
   }
 }
 
-export default App;
+//export default App;
+export default withClass(App, comclasses.App);
 
 // const app = props =>  {
 //   const [ personState, setPersonState ] = useState({

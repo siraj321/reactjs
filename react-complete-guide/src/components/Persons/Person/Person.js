@@ -1,5 +1,9 @@
 //import React from 'react';
 import React, {Component} from 'react'; // conver person.js as component
+import PropsTypes from 'prop-types';
+
+import Aux from '../../../hoc/Auxilary';
+import withClass from '../../../hoc/withClass';
 
 //import Radium from 'radium'
 import classes from './Person.css';
@@ -20,7 +24,27 @@ import classes from './Person.css';
 
 //const person = (props) => {
 class Person extends Component{
+
     render(){
+        console.log('[Person.js] rendaring...')
+        return (
+            // We can use React.Fragment insted of Aux both work same.
+            <Aux>
+            <p  key="i1"onClick={this.props.click}>
+                     I ' m {this.props.name} and I am {this.props.age} year Old.
+           </p>
+
+            <p key="i2">{this.props.children}</p>
+            <input 
+                 key="i3"
+                 type="text" 
+                 onChange={this.props.changed} 
+                 value={this.props.name}/>
+            </Aux>
+        );
+
+    }
+    /*render(){
         console.log('[Person.js] rendaring...')
         return(    
             <div className={classes.Person}>
@@ -32,7 +56,7 @@ class Person extends Component{
             </div>
         );
 
-    }
+    }*/
     
     // const style = {
     //     '@media(min-width: 500px)': {
@@ -58,4 +82,11 @@ class Person extends Component{
 
 };
 
-export default Person;
+Person.PropsTypes ={
+    click:PropsTypes.func,
+    name: PropsTypes.string,
+    age: PropsTypes.number,
+    changed: PropsTypes.func
+};
+//export default Person;
+export default withClass(Person,classes.Person);
